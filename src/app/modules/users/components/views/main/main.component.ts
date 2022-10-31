@@ -50,11 +50,8 @@ export class MainComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(UserInformationDialogComponent, {
-      width: '60%',
+      width: '100%',
       data: this.userWithPosts,
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 

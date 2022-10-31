@@ -1,1 +1,6 @@
-<app-user-form [user]="user"></app-user-form>
+<app-close-button></app-close-button>
+<div class="mat-dialog-container">
+  <app-user-form [user]="user" class="spacer"></app-user-form>
+  <app-user-post-list [posts]="posts" class="spacer"></app-user-post-list>
+</div>
+

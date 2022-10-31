@@ -15,6 +15,10 @@ import { UserPostListComponent } from './components/shared/user-post-list/user-p
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import { PostCardComponent } from './components/shared/post-card/post-card.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { CloseButtonComponent } from './components/shared/close-button/close-button.component';
 
 
 @NgModule({
@@ -23,7 +27,9 @@ import {MatInputModule} from '@angular/material/input';
     UsersTableComponent,
     UserInformationDialogComponent,
     UserFormComponent,
-    UserPostListComponent
+    UserPostListComponent,
+    PostCardComponent,
+    CloseButtonComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +41,8 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatCardModule,
+    MatGridListModule,
   ],
   providers: [
     {provide: MatDialogRef, useValue: {}},

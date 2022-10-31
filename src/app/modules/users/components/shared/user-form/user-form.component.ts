@@ -3,6 +3,7 @@ import {User} from '../../../types/reqres';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ReqresService} from '../../../services/api/reqres.service';
 import {CommunicatorService} from '../../../services/communication/communicator.service';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-form',
@@ -15,6 +16,7 @@ export class UserFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private reqresService: ReqresService,
     private communicatorService: CommunicatorService,
+    public dialog: MatDialog,
   ) { }
   @Input() user: User = {} as User;
   @Output() updatedUser = new EventEmitter<User>();
@@ -36,6 +38,7 @@ export class UserFormComponent implements OnInit {
     this.reqresService.editUser(this.userForm.value).subscribe({
       next: (user) => {
         this.communicatorService.communicateData(user);
+        this.dialog.closeAll();
       }
     });
   }
