@@ -1,0 +1,35 @@
+<mat-table class="mat-elevation-z8" [dataSource]="userList">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> ID</mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="first_name">
+    <mat-header-cell *matHeaderCellDef> First Name</mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.first_name}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="last_name">
+    <mat-header-cell *matHeaderCellDef> Last Name</mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.last_name}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="avatar">
+    <mat-header-cell *matHeaderCellDef> Avatar</mat-header-cell>
+    <mat-cell *matCellDef="let user"><img [src]="user.avatar" alt="user.email"/></mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef> Action</mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <button mat-button color="primary" (click)="selectUser(user)">More Information</button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+</mat-table>
+<mat-paginator [length]="totalUsers"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="activatePaginator($event)">
+</mat-paginator>
