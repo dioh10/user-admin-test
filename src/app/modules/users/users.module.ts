@@ -12,6 +12,9 @@ import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/
 import {MatButtonModule} from '@angular/material/button';
 import {UserFormComponent} from './components/shared/user-form/user-form.component';
 import { UserPostListComponent } from './components/shared/user-post-list/user-post-list.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -29,10 +32,14 @@ import { UserPostListComponent } from './components/shared/user-post-list/user-p
     MatPaginatorModule,
     MatDialogModule,
     MatButtonModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
   ],
   providers: [
     {provide: MatDialogRef, useValue: {}},
-    {provide: MAT_DIALOG_DATA, useValue: {}}
+    {provide: MAT_DIALOG_DATA, useValue: {}},
+    FormBuilder
   ],
 })
 export class UsersModule {

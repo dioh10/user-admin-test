@@ -10,7 +10,7 @@ export class JpService {
 
   constructor(private http: HttpClient) { }
 
-  getPostsByUserId(userId: number): Observable<Post[]> {
+  getPostsByUserId(userId?: number): Observable<Post[]> {
     return this.http.get<Post[]>(`${environment.JP_API}/posts?userId=${userId}`);
   }
 

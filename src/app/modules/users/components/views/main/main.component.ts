@@ -7,6 +7,7 @@ import {mergeMap} from 'rxjs';
 import {UserWithPosts} from '../../../types/UserWithPosts';
 import {MatDialog} from '@angular/material/dialog';
 import {UserInformationDialogComponent} from '../../shared/user-information-dialog/user-information-dialog.component';
+import {CommunicatorService} from '../../../services/communication/communicator.service';
 
 @Component({
   selector: 'app-main',
@@ -17,7 +18,8 @@ export class MainComponent implements OnInit {
 
   constructor(private reqresService: ReqresService,
               private jpService: JpService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private communicatorService: CommunicatorService) {
   }
 
   currentUser: User = {} as User;
@@ -31,7 +33,7 @@ export class MainComponent implements OnInit {
     this.getUserInformation(user.id);
   }
 
-  getUserInformation(userId: number) {
+  getUserInformation(userId?: number) {
     this.reqresService.getUserById(userId).pipe(
       mergeMap((user: DataUser) => {
         this.currentUser = user.data;
@@ -51,7 +53,6 @@ export class MainComponent implements OnInit {
       width: '60%',
       data: this.userWithPosts,
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });

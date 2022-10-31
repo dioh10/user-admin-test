@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ReqresService} from '../../../services/api/reqres.service';
 import {User} from '../../../types/reqres';
 import {PageEvent} from '@angular/material/paginator';
+import {CommunicatorService} from '../../../services/communication/communicator.service';
 
 @Component({
   selector: 'app-users-table',
@@ -9,7 +10,8 @@ import {PageEvent} from '@angular/material/paginator';
   styleUrls: ['./users-table.component.sass']
 })
 export class UsersTableComponent implements OnInit {
-  constructor(private reqresService: ReqresService) {
+  constructor(private reqresService: ReqresService,
+              private communicatorService: CommunicatorService) {
   }
 
   columnsToDisplay: string[] = ['id', 'first_name', 'last_name', 'email', 'avatar', 'action'];
@@ -26,6 +28,7 @@ export class UsersTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getInitialUsers();
+    this.detectUserChanges();
   }
 
   selectUser(user: User) {
@@ -80,6 +83,20 @@ export class UsersTableComponent implements OnInit {
         }
       })
     }
+  }
+
+  detectUserChanges() {
+    this.communicatorService.currentData.subscribe({
+      next: (user: User) => {
+        this.allUsers = this.allUsers.map((u: User) => {
+          if (u.id === user.id) {
+            return user;
+          }
+          return u;
+        });
+        this.userList = this.allUsers.slice(0, this.pageSize);
+      }
+    })
   }
 
 }
